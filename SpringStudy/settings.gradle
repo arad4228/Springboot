@@ -1,2 +1,3 @@
 rootProject.name = 'SpringStudy'
+include 'com.arad4228admin'
 
