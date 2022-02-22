@@ -32,7 +32,8 @@ public class HelloController {
         return "hello " + name;
     }
 
-    // json형식으로 전달 된다.
+    // json형식으로 전달 된다. +
+
     @GetMapping("hello-api")
     @ResponseBody
     public Hello helloApi(@RequestParam("name") String name) {
