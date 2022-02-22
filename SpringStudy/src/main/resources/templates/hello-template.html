@@ -1,0 +1,8 @@
+<html xmlnsLth="http://www.thymeleaf.org">
+<body>
+<!-- thyneleaf를 쓰는 이유는 이 절대경로를 크롬에 띄우면 바로 볼 수 있음.
+추가로 hello + ${name}이 뒤의 hello! empty를 치환
+$는 Model의 key값이 name인것에서 값을 꺼내서 치환-->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
