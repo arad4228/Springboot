@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 // 현재의방식은 컨포넌트 스캔과 자동 의존관계 설정이다.
-@Repository
+
 public class MemoryMemberRepository implements  MemberRepository{
 
     // 실무에서는 동시성을 고려하기
