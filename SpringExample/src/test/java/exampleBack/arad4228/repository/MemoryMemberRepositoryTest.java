@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 class MemoryMemberRepositoryTest {
 
-    MemoryMemberRopository repository = new MemoryMemberRopository();
+    MemoryMemberRepository repository = new MemoryMemberRepository();
 
     // Test가 끝날때마다 수행.
     @AfterEach

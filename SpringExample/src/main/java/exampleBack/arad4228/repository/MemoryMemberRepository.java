@@ -4,7 +4,7 @@ import exampleBack.arad4228.domain.Member;
 
 import java.util.*;
 
-public class MemoryMemberRopository implements  MemberRepository{
+public class MemoryMemberRepository implements  MemberRepository{
 
     // 실무에서는 동시성을 고려하기
     private static Map<Long, Member> store = new HashMap<>();

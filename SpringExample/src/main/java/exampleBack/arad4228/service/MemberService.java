@@ -2,13 +2,16 @@ package exampleBack.arad4228.service;
 
 import exampleBack.arad4228.domain.Member;
 import exampleBack.arad4228.repository.MemberRepository;
-import exampleBack.arad4228.repository.MemoryMemberRopository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private  final MemberRepository memberRepository = new MemoryMemberRopository();
+    private  final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /*
      * 회원가입
