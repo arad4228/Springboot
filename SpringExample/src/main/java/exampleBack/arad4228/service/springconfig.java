@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.EntityManager;
-
 @Configuration
 public class springconfig {
 
@@ -18,19 +16,26 @@ public class springconfig {
     //    this.dataSource = dataSource;
     //}
 
-    private EntityManager em;
+    //private EntityManager em;
+    //
+    //@Autowired
+    //public springconfig(EntityManager em) {
+    //    this.em = em;
+    //}
+
+    private MemberRepository memberRepository;
 
     @Autowired
-    public springconfig(EntityManager em) {
-        this.em = em;
+    public springconfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
+/*    @Bean
     public MemberRepository memberRepository() {
         // 메모리 관련
         //return new MemoryMemberRepository();
@@ -38,7 +43,9 @@ public class springconfig {
         //return new JdbcMemberRepository(dataSource);
         // JDBC Template 관련
         //return  new JdbcTemplateMemverRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+        // Jpa 관련
+        //return new JpaMemberRepository(em);
+
+    }*/
 }
 
