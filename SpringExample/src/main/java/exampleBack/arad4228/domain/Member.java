@@ -1,7 +1,12 @@
 package exampleBack.arad4228.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Member {
 
+    // Db가 알아서 생성일시 identity.
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 

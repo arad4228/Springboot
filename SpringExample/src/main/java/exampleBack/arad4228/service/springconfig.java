@@ -1,22 +1,28 @@
 package exampleBack.arad4228.service;
 
-import exampleBack.arad4228.repository.JdbcMemberRepository;
-import exampleBack.arad4228.repository.JdbcTemplateMemverRepository;
+import exampleBack.arad4228.repository.JpaMemberRepository;
 import exampleBack.arad4228.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
 
 @Configuration
 public class springconfig {
 
-    private DataSource dataSource;
+    //private DataSource dataSource;
+
+    //@Autowired
+    //public springconfig(DataSource dataSource) {
+    //    this.dataSource = dataSource;
+    //}
+
+    private EntityManager em;
 
     @Autowired
-    public springconfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public springconfig(EntityManager em) {
+        this.em = em;
     }
 
     @Bean
@@ -26,9 +32,13 @@ public class springconfig {
 
     @Bean
     public MemberRepository memberRepository() {
+        // 메모리 관련
         //return new MemoryMemberRepository();
+        // JDBC관련
         //return new JdbcMemberRepository(dataSource);
-        return  new JdbcTemplateMemverRepository(dataSource);
+        // JDBC Template 관련
+        //return  new JdbcTemplateMemverRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 }
 
