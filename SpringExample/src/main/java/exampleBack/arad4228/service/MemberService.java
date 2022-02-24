@@ -22,6 +22,22 @@ public class MemberService {
      * 회원가입
      */
     public Long join(Member member) {
+        /*
+        시간을 찍기위했던 로직들 메서드의 경과 시간을 확인하기위한 방법 중 하나.
+        long start = System.currentTimeMillis();
+
+        try {
+            // 중복확인
+            ValidateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        }finally{
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join =" + timeMs +  "Ms");
+        }
+        */
+
         // 같은 이름이 있는 회원은 불가능 하다.
         /*
         Optional <Member> result = memberRepository.findByName(member.getName());
@@ -30,6 +46,7 @@ public class MemberService {
                throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
          */
+
         // 중복회원 검증
         ValidateDuplicateMember(member);
 
@@ -46,7 +63,18 @@ public class MemberService {
     /*
         전체 회원 조회.
      */
-    public List<Member> findMembers(){
+    public List<Member> findMembers() {
+        /*
+        시간을 찍기위했던 로직들
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers " + timeMs + "ms");
+        }
+        */
         return memberRepository.findAll();
     }
 
