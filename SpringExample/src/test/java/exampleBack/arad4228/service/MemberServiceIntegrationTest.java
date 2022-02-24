@@ -1,29 +1,26 @@
 package exampleBack.arad4228.service;
 
 import exampleBack.arad4228.domain.Member;
+import exampleBack.arad4228.repository.MemberRepository;
 import exampleBack.arad4228.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MemberServiceTest {
+@SpringBootTest
+// Test를 반복하기 위해 DB의 Commit을 rollback.
+// 나중에 Test를 하며 만들었던 것을 테스트가 끝나면 지워준다.
+@Transactional
+class MemberServiceIntegrationTest {
 
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
-    }
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
     @Test
     void 회원가입() {
@@ -62,12 +59,5 @@ class MemberServiceTest {
         }
          */
         //then
-    }
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
     }
 }
