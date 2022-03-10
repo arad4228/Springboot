@@ -30,5 +30,10 @@ public class Posts {
         this.context = context;
         this.author = author;
     }
+
+    public void update(String title, String context) {
+        this.title = title;
+        this.context = context;
+    }
 }
 

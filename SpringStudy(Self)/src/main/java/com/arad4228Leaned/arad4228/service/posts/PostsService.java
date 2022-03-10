@@ -1,8 +1,11 @@
 package com.arad4228Leaned.arad4228.service.posts;
 
+import com.arad4228Leaned.arad4228.domain.posts.Posts;
 import com.arad4228Leaned.arad4228.domain.posts.PostsRepository;
 import com.arad4228Leaned.arad4228.web.PostsApiController;
+import com.arad4228Leaned.arad4228.web.dto.PostsResponseDto;
 import com.arad4228Leaned.arad4228.web.dto.PostsSaveRequestDto;
+import com.arad4228Leaned.arad4228.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +19,20 @@ public class PostsService {
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
+    }
+
+    @Transactional
+    public Long update(Long id, PostsUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findAllById(id)
+                .orElseThrow(() -> new IllegalAccessException("해당 게시글이 없습니다. id="+id));
+        posts.update(requestDto.getTitle(), requestDto.getContext());
+
+        return id;
+    }
+
+    public PostsResponseDto findById(Long id) {
+        Posts entity = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
+        return new PostsResponseDto(entity);
     }
 }
