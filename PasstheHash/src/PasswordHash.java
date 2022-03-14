@@ -29,6 +29,10 @@ public class PasswordHash {
         return builder.toString();
     }
 
+    public String getSalt() {
+        return this.salt;
+    }
+
     private String generateSalt() {
         byte[] bytes = new byte[20];
         new Random().nextBytes(bytes);
